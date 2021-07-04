@@ -100,16 +100,24 @@ function firstPlot() {
       var subbb = data.metadata[0].bbtype;
       buildPanel(subID, subEth, subGender, subAge, subbb);
 
-      function buildPanel
+      function buildPanel (subID, subEth, subGender, subAge, subbb) {
+        var panelID = d3.select("#sample-metadata");
+        var prow;
+        var subjectlist = Object.keys(data.metada[0]);
+        for (var i = 0; i < subjectlist; i++) {
+          prow = panelID.append("p");
+          prow.append("p").text(subID[i]);
+          prow.append("p").text(subEth[i]);
+          prow.append("p").text(subGender[i]);
+          prow.append("p").text(subAge[i]);
+          prow.append("p").text(subbb[i]);
+
+      }
+    }
 
 
-      var Demotable = d3.select("body").append("div").attr("id", "sample-metadata");
-     
+    })
 
-
-
-    });
-
-}
+};
 
 firstPlot();
