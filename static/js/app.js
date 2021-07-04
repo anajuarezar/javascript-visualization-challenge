@@ -21,23 +21,23 @@ function firstPlot() {
     // We begin to do the default plot
 
     console.log(data);
-    var sampleValues = data.samples[0].sample_values;
-    var otuID = data.samples[0].otu_ids;
-    var otuLabels = data.samples[0].otu_labels;
+    var sampleValues = data.samples[0].sample_values.slice(0, 10).reverse();
+    var ID = data.samples[0].otu_ids.slice(0, 10).reverse();
+    var otuLabels = data.samples[0].otu_labels.slice(0, 10).reverse();
+    var otuID = ID.map(each => "OTU" + each);
+
     console.log(sampleValues);
+    console.log(ID);
+    console.log(otuLabels);
+    console.log(otuID);
 
-    // Time to slice and sort!
-
-    var slicedSample = sampleValues.slice(0, 10).reverse();
-    var slicedotuID = otuID.slice(0, 10).reverse();
-    var labels = slicedotuID.map((each => "OTU" + each));
-    console.log(slicedSample);
 
     var trace1 = {
-        x: slicedSample,
-        y: slicedotuID,
+        x: sampleValues,
+        y: otuID,
         type: "bar",
-        orientation: "h"
+        orientation: "h",
+        text : otuLabels
       };
       
       // data
@@ -47,14 +47,21 @@ function firstPlot() {
       var layout = {
         title: "Top Bacteria Cultures Found",
         margin: {
-          l: 75,
-          r: 75,
-          t: 75,
-          b: 75
+          l: 80,
+          r: 80,
+          t: 80,
+          b: 80
         }
       };
 
       Plotly.newPlot("bar", data, layout);
+
+
+
+      // Default bubble chart 
+
+
+
     });
 
 }
