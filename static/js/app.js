@@ -102,15 +102,11 @@ function firstPlot() {
 
       function buildPanel (subID, subEth, subGender, subAge, subbb) {
         var panelID = d3.select("#sample-metadata");
-        var prow;
+        panelID.html("");
         var subjectlist = Object.keys(data.metada[0]);
+        var subvalues = Object.values(data.metada[0]);
         for (var i = 0; i < subjectlist; i++) {
-          prow = panelID.append("p");
-          prow.append("p").text(subID[i]);
-          prow.append("p").text(subEth[i]);
-          prow.append("p").text(subGender[i]);
-          prow.append("p").text(subAge[i]);
-          prow.append("p").text(subbb[i]);
+          panelID.append("p").text(`${subjectlist[i]}: ${subvalues[i]}`);
 
       }
     }
