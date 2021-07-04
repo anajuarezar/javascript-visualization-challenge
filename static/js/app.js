@@ -91,7 +91,21 @@ function firstPlot() {
 
       // Demographic table
 
+      // First, let's retrieve the information
+
+      var subID = data.metadata[0].id;
+      var subEth = data.metadata[0].ethnicity;
+      var subGender = data.metadata[0].gender;
+      var subAge = data.metadata[0].age;
+      var subbb = data.metadata[0].bbtype;
+      buildPanel(subID, subEth, subGender, subAge, subbb);
+
+      function buildPanel
+
+
       var Demotable = d3.select("body").append("div").attr("id", "sample-metadata");
+     
+
 
 
     });
