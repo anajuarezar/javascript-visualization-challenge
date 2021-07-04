@@ -75,7 +75,7 @@ function firstPlot() {
         text: otuLabels.toString(),
         marker: {
           size: sampleValues,
-          color: otuID,
+          color: ID,
           colorscale: 'Picnic'
         }
       };
@@ -85,12 +85,13 @@ function firstPlot() {
       var layout = {
         title: 'Bubble Chart for each Subject',
         showlegend: false,
-        height: 900,
-        width: 800
       };
       
       Plotly.newPlot("bubble", data, layout);
 
+      // Demographic table
+
+      var Demotable = d3.select("body").append("div").attr("id", "sample-metadata");
 
 
     });
