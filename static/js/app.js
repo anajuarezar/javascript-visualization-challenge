@@ -8,19 +8,32 @@ function Plot() {
 
   d3.json("./samples.json").then((data) => {
 
-  // Now, let' select the dropdown menu and add the options. 
+  // Now, let's begin defining the variables that will contain the different arrays.
+
     var options = data.names;
     var metaArray = data.metadata;
+
+  // Let's create the dropdown menu using the var we created! 
+
     var dropMenu = d3.select("#selDataset");
     options.map(option => {
     dropMenu.append("option").text(option);
     });
 
+  // We create the handlers and event that will trigger the update of our visualizations.
+  // Here, the event will be a change in the dropdown menu.
+
     d3.selectAll("#selDataset").on("change", Plot);
+
+   // For the visualizations to change accordingly with the id, we will use the value property to obtain the id number   
     var subject =dropMenu.property("value");
+  
+  // Using that number we will use the function INDEXOF to obtain the index that we will use to define the index while
+  // obtaining the information.
+
     var index = data.names.indexOf(subject);
 
-  // We continue on to the bar data. 
+  // Here we will use the index we obtained to retrieve that subjects info and create our first plot. 
 
     var sampleValues = data.samples[index].sample_values;
     var ID = data.samples[index].otu_ids;
@@ -42,6 +55,7 @@ function Plot() {
     console.log(otuID);
 
   // Plot time
+
     var trace1 = {
       x: samplesliced,
       y: otuIDsliced,
@@ -90,7 +104,6 @@ function Plot() {
 
     // Demographic table
 
-  
     var IDpanel = d3.select("#sample-metadata"); 
     IDpanel.html("");
     console.log(metaArray);
