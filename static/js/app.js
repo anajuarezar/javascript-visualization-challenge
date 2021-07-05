@@ -30,9 +30,9 @@ function Plot() {
 
   // Time to sort and slice!
 
-    var samplesliced = data.samples[subject].sample_values.slice(0, 10).reverse();
-    var IDsliced = data.samples[subject].otu_ids.slice(0, 10).reverse();
-    var slicedLabels = data.samples[subject].otu_labels.slice(0, 10).reverse();
+    var samplesliced = data.samples[index].sample_values.slice(0, 10).reverse();
+    var IDsliced = data.samples[index].otu_ids.slice(0, 10).reverse();
+    var slicedLabels = data.samples[index].otu_labels.slice(0, 10).reverse();
     var otuIDsliced = IDsliced.map(each => "OTU" + each);
 
   // Check the results!!
@@ -94,10 +94,9 @@ function Plot() {
     var metadata = data.metadata;
     var IDpanel = d3.select("#sample-metadata"); 
     IDpanel.html("");
-    var selectdata = metadata.find(selected =>
-      selected.id === selectid);
-      Object.entries(selectdata).map(([key, value]) => {
-        metadatabox.append("p").text(`${key}: ${value}`);
+    var subjectSelected = index;
+      Object.entries(subjectSelected).map(([key, value]) => {
+        IDpanel.append("p").text(`${key}: ${value}`);
       })
 
 
