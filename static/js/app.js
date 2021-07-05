@@ -99,9 +99,12 @@ function Plot(subject) {
     function updatetData() {
       var dropdownMenu = d3.select("#selDataset");
       var dataset = dropdownMenu.property("value");
-      if (dataset ===  {
+      var names = data.names;
+      var index = data.indexOf(names);
+      if (dataset ===  index) {
+        return 
+       }
 
-      }
       Plot(index);
     
     }
