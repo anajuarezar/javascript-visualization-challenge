@@ -19,3 +19,13 @@ In order to do this I followed this steps:
 10. Afterwards, I plotted the bubble graph.
 11. Finally, I built the demographic panel. Using d3 I selected the node where it was placed, I emptied it. I used find and the subject var I had from the beginning to map the corresponding id from the metadata array. Then using Object.entries, I obtained both the key and the value. Now, I only had to append it to a parraph.
 12. The only thing left was to call the function.  
+
+These are the results:
+
+![alt text](https://github.com/anajuarezar/javascript-visualization-challenge/blob/main/images/2021-07-04.png)
+![alt text](https://github.com/anajuarezar/javascript-visualization-challenge/blob/main/images/2021-07-04%20(2).png)
+
+
+You can see the visualizations in action by clicking [here](https://anajuarezar.github.io/javascript-visualization-challenge/)
+
+
