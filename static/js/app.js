@@ -1,7 +1,9 @@
 
 // Let's begin with defining the function that will create the plots and update itself.
 
-function Plot(subject) {
+
+function Plot() {
+
   // We need to read the json file, but since it is in another folder we will use d3 to call it. 
 
   d3.json("./samples.json").then((data) => {
@@ -13,12 +15,17 @@ function Plot(subject) {
     dropMenu.append("option").text(option);
     });
 
+    d3.selectAll("#selDataset").on("change", Plot);
+    var subject =dropMenu.property("value");
+    var index = data.names.indexOf(subject);
+    console.log(index);
+
   // We continue on to the bar data. 
 
     console.log(data);
-    var sampleValues = data.samples[subject].sample_values;
-    var ID = data.samples[subject].otu_ids;
-    var otuLabels = data.samples[subject].otu_labels;
+    var sampleValues = data.samples[index].sample_values;
+    var ID = data.samples[index].otu_ids;
+    var otuLabels = data.samples[index].otu_labels;
     var otuID = ID.map(each => "OTU" + each);
 
   // Time to sort and slice!
@@ -84,34 +91,19 @@ function Plot(subject) {
 
     // Demographic table
 
-    var panelID = d3.select("#sample-metadata");
-    panelID.html("");
-    var subjectlist = Object.keys(data.metada[index]);
-    var subvalues = Object.values(data.metada[index]);
-    for (var i = 0; i < subjectlist.length; i++) {
-      panelID.append("p").text(`${subjectlist[i]}: ${subvalues[i]}`);
-    };
+    var metadata = data.metadata;
+    var IDpanel = d3.select("#sample-metadata"); 
+    IDpanel.html("");
+    var selectdata = metadata.find(selected =>
+      selected.id === selectid);
+      Object.entries(selectdata).map(([key, value]) => {
+        metadatabox.append("p").text(`${key}: ${value}`);
+      })
 
-  // Time to create the handler
-  
-    d3.selectAll("#selDataset").on("change", updateData);
 
-    function updatetData() {
-      var dropdownMenu = d3.select("#selDataset");
-      var dataset = dropdownMenu.property("value");
-      var names = data.names;
-      var index = data.indexOf(names);
-      if (dataset ===  index) {
-        return 
-       }
-
-      Plot(index);
-    
-    }
-    
-  
   })
+    
 
 };
 
-Plot(0);
+Plot()
