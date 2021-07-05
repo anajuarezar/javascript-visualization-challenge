@@ -10,6 +10,7 @@ function Plot() {
 
   // Now, let' select the dropdown menu and add the options. 
     var options = data.names;
+    var metaArray = data.metadata;
     var dropMenu = d3.select("#selDataset");
     options.map(option => {
     dropMenu.append("option").text(option);
@@ -18,11 +19,9 @@ function Plot() {
     d3.selectAll("#selDataset").on("change", Plot);
     var subject =dropMenu.property("value");
     var index = data.names.indexOf(subject);
-    console.log(index);
 
   // We continue on to the bar data. 
 
-    console.log(data);
     var sampleValues = data.samples[index].sample_values;
     var ID = data.samples[index].otu_ids;
     var otuLabels = data.samples[index].otu_labels;
@@ -91,12 +90,14 @@ function Plot() {
 
     // Demographic table
 
-    var metadata = data.metadata;
+  
     var IDpanel = d3.select("#sample-metadata"); 
     IDpanel.html("");
-    var subjectSelected = index;
-      Object.entries(subjectSelected).map(([key, value]) => {
-        IDpanel.append("p").text(`${key}: ${value}`);
+    console.log(metaArray);
+    var subjectSelected = metaArray.find(element => element.id == subject);
+    console.log(subjectSelected);
+    Object.entries(subjectSelected).find(([key, value]) => {
+      IDpanel.append("p").text(`${key}: ${value}`);
       })
 
 
