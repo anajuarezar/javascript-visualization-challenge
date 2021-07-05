@@ -34,6 +34,8 @@ function Plot() {
     var index = data.names.indexOf(subject);
 
   // Here we will use the index we obtained to retrieve that subjects info and create our first plot. 
+  // Now, LET'S PLOT! 
+  // Our first plot is a horizontal bar plot. 
 
     var sampleValues = data.samples[index].sample_values;
     var ID = data.samples[index].otu_ids;
